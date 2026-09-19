@@ -1,0 +1,21 @@
+# --- Naive, single-stage Dockerfile ---
+# Everything (compilers, pip cache, source CSV, training script, build tools
+# pulled in by scikit-learn/pandas' native deps) ends up in the final image.
+
+FROM python:3.11
+
+WORKDIR /app
+
+# Copy dependency list and install
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+# Copy application code + training data
+COPY . .
+
+# Train the model at build time (produces model.joblib)
+RUN python train.py
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

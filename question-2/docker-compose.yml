@@ -1,0 +1,27 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile      # the multi-stage build from Question 1
+    image: spam-api:multistage
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_HOST=cache          # reach Redis by its Compose service name
+      - REDIS_PORT=6379
+      - CACHE_TTL_SECONDS=300
+    depends_on:
+      cache:
+        condition: service_healthy
+    restart: unless-stopped
+
+  cache:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"               # exposed on the host too, handy for redis-cli debugging
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
