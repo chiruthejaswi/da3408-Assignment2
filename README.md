@@ -1,6 +1,6 @@
 # Spam-Detection API — Docker & Kubernetes Assignment
 
-A single spam-detection API (TF-IDF + MultinomialNB, served via FastAPI) used
+A single spam-detection API used
 as the common thread across all four questions, each exercising a different
 Docker/Kubernetes skill.
 
@@ -8,10 +8,10 @@ Docker/Kubernetes skill.
 
 | Folder | Question | What it covers |
 |---|---|---|
-| `question-1/` | Single-stage vs. multi-stage Docker | `Dockerfile.naive` vs. `Dockerfile`, image size comparison |
-| `question-2/` | Docker Compose + Redis caching | `docker-compose.yml`, cache hit/miss logic in `app.py`, benchmarked speedup |
-| `question-3/` | Kubernetes Indexed Job | Parallel validation of 8 CSV shards, `k8s-job.yaml`, results collected via the Kubernetes API |
-| `question-4/` | Kubernetes Deployment | Self-healing + zero-downtime rolling update, `k8s-deployment.yaml` |
+| `question-1` | Single-stage vs. multi-stage Docker | `Dockerfile.naive` vs. `Dockerfile`, image size comparison |
+| `question-2` | Docker Compose + Redis caching | `docker-compose.yml`, cache hit/miss logic in `app.py`, benchmarked speedup |
+| `question-3` | Kubernetes Indexed Job | Parallel validation of 8 CSV shards, `k8s-job.yaml`, results collected via the Kubernetes API |
+| `question-4` | Kubernetes Deployment | Self-healing + zero-downtime rolling update, `k8s-deployment.yaml` |
 
 Each folder contains its own code, Kubernetes/Docker manifests, and a
 `QuestionN_Report.docx` with full command output, measured results, and
